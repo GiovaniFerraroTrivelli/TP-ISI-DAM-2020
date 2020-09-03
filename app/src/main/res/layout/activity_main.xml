@@ -5,11 +5,139 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <EditText
+        android:id="@+id/Nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nombre"/>
+
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/PasswordRepeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/repeat_password"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tipo"/>
+
+    <RadioGroup
+        android:id="@+id/CardType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/debito"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/credito"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/CardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/numero_tarjeta"
+            android:inputType="number"/>
+        <EditText
+            android:id="@+id/CardCCV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ccv"
+            android:inputType="number"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/vencimiento"/>
 
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/MesVencimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mes_vencimiento"
+            android:inputType="number"/>
+        <EditText
+            android:id="@+id/AnioVencimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/año_vencimiento"
+            android:inputType="number"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/CBU"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cbu"/>
+
+    <EditText
+        android:id="@+id/CBUAlias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cbu_alias"/>
+
+    <Switch
+        android:id="@+id/RealizarCargaInicial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/realizar_carga_inicial"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/credito_inicial"
+        />
+
+    <SeekBar
+        android:id="@+id/CreditoInicial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="1500"
+        />
+
+    <CheckBox
+        android:id="@+id/AceptarTerminos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/terminos_condiciones"
+    />
 </LinearLayout>
