@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -72,11 +74,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+
     public void onClick(View v) {
-        // Validar contraseñas
+        Boolean validar = true;
+
+        // Correo elecrónico
+        String email = ((EditText) findViewById(R.id.Email)).getText().toString();
+        // TODO: Esto debería tener una regex
+        validar = (email != null);
+
+        // Claves
         if(!txtPassword1.getText().toString().equals(txtPassword2.getText().toString())) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             return;
+        }
+
+        // Numero de tarjeta y ccv
+        String numeroTarjeta = ((EditText) findViewById(R.id.CardNumber)).getText().toString();
+        String cardCCV = ((EditText) findViewById(R.id.CardCCV)).getText().toString();
+
+        // Fecha Vencimiento
+        String anioVencimiento = ((EditText) findViewById(R.id.AnioVencimiento)).getText().toString();
+        String mesVencimiento = ((EditText) findViewById(R.id.MesVencimiento)).getText().toString();
+
+        // Tipo tarjeta
+        int idTipoTarjeta = ((RadioGroup) findViewById(R.id.CardType)).getCheckedRadioButtonId();
+        String tipoTarjeta = ((RadioButton) findViewById(idTipoTarjeta)).getText().toString();
+
+        // Slider de carga inicial
+        Switch switchCargaInicial = (Switch) findViewById(R.id.RealizarCargaInicial);
+
+        if(switchCargaInicial.isChecked()){
+            // TODO: La seekbar debería mostrar un valor
+            int creditoInicial = ((SeekBar) findViewById(R.id.CreditoInicial)).getProgress();
+            validar = (creditoInicial > 0);
         }
 
 
