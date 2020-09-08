@@ -20,8 +20,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText txtPassword1;
-    EditText txtPassword2;
+    EditText password;
+    EditText confirmarPassword;
+    TextView alertaPasword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Button btnRegister = (Button)findViewById(R.id.Registrar);
         btnRegister.setOnClickListener(this);
 
-        txtPassword1 = (EditText)findViewById(R.id.Password);
-        txtPassword2 = (EditText)findViewById(R.id.PasswordRepeat);
+        password = (EditText)findViewById(R.id.Password);
+        confirmarPassword = (EditText)findViewById(R.id.PasswordRepeat);
 
         final EditText txtCCV = (EditText)findViewById(R.id.CardCCV);
 
@@ -72,6 +73,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 btnRegister.setEnabled(((CheckBox) view).isChecked());
             }
         });
+
+        /**
+        * Para validar las contraseñas:
+        * Se ejecuta cuando se cambia el focus del EditText de confirmar contraseña.
+        * Si las contraseñas no coninciden, hace visible un TextView que muestra un
+        * mensaje de error. Si se corrige, el TextView desaparece.
+        */
+        confirmarPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    alertaPasword = (TextView) findViewById(R.id.alertaPassword);
+                    if(!password.getText().toString().equals(confirmarPassword.getText().toString())) {
+                        alertaPasword.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        alertaPasword.setVisibility(View.INVISIBLE);
+                    }
+
+                }
+            }
+        });
     }
 
 
@@ -84,10 +107,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         validar = (email != null);
 
         // Claves
-        if(!txtPassword1.getText().toString().equals(txtPassword2.getText().toString())) {
+        /*
+        if(!password.getText().toString().equals(confirmarPassword.getText().toString())) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             return;
         }
+         */
 
         // Numero de tarjeta y ccv
         String numeroTarjeta = ((EditText) findViewById(R.id.CardNumber)).getText().toString();

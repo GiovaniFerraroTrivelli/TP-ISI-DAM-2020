@@ -29,6 +29,14 @@
         android:hint="@string/repeat_password"
         android:inputType="textPassword"/>
 
+    <TextView
+        android:id="@+id/alertaPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Las contraseñas deben coincidir"
+        android:textColor="#f00"
+        android:visibility="invisible"/>
+
     <EditText
         android:id="@+id/Email"
         android:layout_width="match_parent"
