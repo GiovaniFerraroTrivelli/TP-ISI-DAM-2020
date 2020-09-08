@@ -16,6 +16,13 @@
         android:hint="@string/nombre"/>
 
     <EditText
+        android:id="@+id/Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
         android:id="@+id/Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,16 +40,9 @@
         android:id="@+id/alertaPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Las contraseñas deben coincidir"
+        android:text="@string/alerta_password"
         android:textColor="#f00"
         android:visibility="invisible"/>
-
-    <EditText
-        android:id="@+id/Email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"/>
 
     <TextView
         android:layout_width="wrap_content"

@@ -3,6 +3,7 @@
     <string name="nombre">Nombre</string>
     <string name="password">Contraseña</string>
     <string name="repeat_password">Repetir Contraseña</string>
+    <string name="alerta_password">Las contraseñas deben coincidir</string>
     <string name="email">Email</string>
     <string name="debito">Debito</string>
     <string name="credito">Credito</string>

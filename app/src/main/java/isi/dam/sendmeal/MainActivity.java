@@ -18,6 +18,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText password;
@@ -99,12 +102,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void onClick(View v) {
-        Boolean validar = true;
 
-        // Correo elecrónico
+        // Validar correo elecrónico
         String email = ((EditText) findViewById(R.id.Email)).getText().toString();
-        // TODO: Esto debería tener una regex
-        validar = (email != null);
+        if(!this.validarCorreoElectronico(email)){
+            Toast.makeText(this, "La dirección de correo ingresada no es válida", Toast.LENGTH_SHORT).show();
+        }
+
 
         // Claves
         /*
@@ -114,27 +118,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
          */
 
+
         // Numero de tarjeta y ccv
-        String numeroTarjeta = ((EditText) findViewById(R.id.CardNumber)).getText().toString();
-        String cardCCV = ((EditText) findViewById(R.id.CardCCV)).getText().toString();
+        //String numeroTarjeta = ((EditText) findViewById(R.id.CardNumber)).getText().toString();
+        //String cardCCV = ((EditText) findViewById(R.id.CardCCV)).getText().toString();
 
         // Fecha Vencimiento
-        String anioVencimiento = ((EditText) findViewById(R.id.AnioVencimiento)).getText().toString();
-        String mesVencimiento = ((EditText) findViewById(R.id.MesVencimiento)).getText().toString();
+        //String anioVencimiento = ((EditText) findViewById(R.id.AnioVencimiento)).getText().toString();
+        //String mesVencimiento = ((EditText) findViewById(R.id.MesVencimiento)).getText().toString();
 
         // Tipo tarjeta
-        int idTipoTarjeta = ((RadioGroup) findViewById(R.id.CardType)).getCheckedRadioButtonId();
-        String tipoTarjeta = ((RadioButton) findViewById(idTipoTarjeta)).getText().toString();
+        //int idTipoTarjeta = ((RadioGroup) findViewById(R.id.CardType)).getCheckedRadioButtonId();
+        //String tipoTarjeta = ((RadioButton) findViewById(idTipoTarjeta)).getText().toString();
 
         // Slider de carga inicial
-        Switch switchCargaInicial = (Switch) findViewById(R.id.RealizarCargaInicial);
+        //Switch switchCargaInicial = (Switch) findViewById(R.id.RealizarCargaInicial);
 
+        /*
         if(switchCargaInicial.isChecked()){
             // TODO: La seekbar debería mostrar un valor
             int creditoInicial = ((SeekBar) findViewById(R.id.CreditoInicial)).getProgress();
             validar = (creditoInicial > 0);
         }
+         */
 
 
+    }
+
+    /**
+     * Verifica si el correo electrónico cumple con la expresión regular dada.
+     * @param correo: dirección de correo eletrónico
+     * @return true (si la dirección de correo es válida)
+     */
+    private boolean validarCorreoElectronico(String correo) {
+        /*
+        int indexArroba = correo.indexOf("@");
+        int countLetras = 0;
+        if(indexArroba >= 0){
+            int i = indexArroba;
+            while(countLetras < 3 && i < correo.length()) {
+                if(Character.isLetter(correo.charAt(i))) {
+                    countLetras++;
+                }
+            }
+        }
+        return indexArroba >=0 && countLetras >= 3;
+         */
+
+        Pattern EMAIL_VALIDO = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = EMAIL_VALIDO.matcher(correo);
+        return matcher.find();
     }
 }
