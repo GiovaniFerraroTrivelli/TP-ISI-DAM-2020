@@ -76,7 +76,8 @@
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:hint="@string/numero_tarjeta"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="19"/>
 
         <EditText
             android:id="@+id/CardCCV"
@@ -104,13 +105,15 @@
             android:layout_width="243dp"
             android:layout_height="wrap_content"
             android:hint="@string/mes_vencimiento"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="2"/>
         <EditText
             android:id="@+id/AnioVencimiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/año_vencimiento"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:maxLength="2"/>
     </LinearLayout>
 
     <EditText
@@ -118,12 +121,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:maxLength="22"
         android:hint="@string/cbu"/>
 
     <EditText
         android:id="@+id/CBUAlias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:maxLength="20"
         android:hint="@string/cbu_alias"/>
 
     <Switch
