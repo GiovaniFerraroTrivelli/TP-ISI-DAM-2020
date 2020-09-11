@@ -30,34 +30,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button btnRegister = (Button)findViewById(R.id.Registrar);
+        final Button btnRegister = (Button) findViewById(R.id.Registrar);
         btnRegister.setOnClickListener(this);
 
-        password = (EditText)findViewById(R.id.Password);
-        confirmarPassword = (EditText)findViewById(R.id.PasswordRepeat);
+        password = (EditText) findViewById(R.id.Password);
+        confirmarPassword = (EditText) findViewById(R.id.PasswordRepeat);
 
-        final EditText txtCCV = (EditText)findViewById(R.id.CardCCV);
+        final EditText txtCCV = (EditText) findViewById(R.id.CardCCV);
 
-        EditText txtCardNumber = (EditText)findViewById(R.id.CardNumber);
+        EditText txtCardNumber = (EditText) findViewById(R.id.CardNumber);
         txtCardNumber.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
             @Override
             public void afterTextChanged(Editable editable) {
                 txtCCV.setEnabled(editable.toString().length() > 0);
             }
         });
 
-        final TextView txtCreditoInicial = (TextView)findViewById(R.id.TextCreditoInicial);
-        final SeekBar skCreditoInicial = (SeekBar)findViewById(R.id.CreditoInicial);
+        final TextView txtCreditoInicial = (TextView) findViewById(R.id.TextCreditoInicial);
+        final SeekBar skCreditoInicial = (SeekBar) findViewById(R.id.CreditoInicial);
 
-        final Switch swtCargaFinal = (Switch)findViewById(R.id.RealizarCargaInicial);
+        final Switch swtCargaFinal = (Switch) findViewById(R.id.RealizarCargaInicial);
         swtCargaFinal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) {
+                if (b) {
                     txtCreditoInicial.setVisibility(View.VISIBLE);
                     skCreditoInicial.setVisibility(View.VISIBLE);
                 } else {
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        CheckBox chkAceptarTerminos = (CheckBox)findViewById(R.id.AceptarTerminos);
+        CheckBox chkAceptarTerminos = (CheckBox) findViewById(R.id.AceptarTerminos);
         chkAceptarTerminos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,20 +80,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         /**
-        * Para validar las contraseñas:
-        * Se ejecuta cuando se cambia el focus del EditText de confirmar contraseña.
-        * Si las contraseñas no coninciden, hace visible un TextView que muestra un
-        * mensaje de error. Si se corrige, el TextView desaparece.
-        */
+         * Para validar las contraseñas:
+         * Se ejecuta cuando se cambia el focus del EditText de confirmar contraseña.
+         * Si las contraseñas no coninciden, hace visible un TextView que muestra un
+         * mensaje de error. Si se corrige, el TextView desaparece.
+         */
         confirmarPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     alertaPasword = (TextView) findViewById(R.id.alertaPassword);
-                    if(!password.getText().toString().equals(confirmarPassword.getText().toString())) {
+                    if (!password.getText().toString().equals(confirmarPassword.getText().toString())) {
                         alertaPasword.setVisibility(View.VISIBLE);
-                    }
-                    else {
+                    } else {
                         alertaPasword.setVisibility(View.INVISIBLE);
                     }
                 }
@@ -102,19 +105,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Validar correo elecrónico
         String email = ((EditText) findViewById(R.id.Email)).getText().toString();
-        if(!InputValidator.validarCorreoElectronico(email)){
+        if (!InputValidator.validarCorreoElectronico(email)) {
             Toast.makeText(this, "La dirección de correo ingresada no es válida", Toast.LENGTH_SHORT).show();
         }
 
         // Fecha Vencimiento
-        String mesVencimiento  = ((EditText) findViewById(R.id.MesVencimiento)).getText().toString();
+        String mesVencimiento = ((EditText) findViewById(R.id.MesVencimiento)).getText().toString();
         String anioVencimiento = ((EditText) findViewById(R.id.AnioVencimiento)).getText().toString();
 
         // Tipo tarjeta
-        int idTipoTarjeta = ((RadioGroup) findViewById(R.id.CardType)).getCheckedRadioButtonId();
-        String tipoTarjeta = ((RadioButton) findViewById(idTipoTarjeta)).getText().toString();
+        RadioGroup radioTipoTarjeta = (RadioGroup) findViewById(R.id.CardType);
+        int idTipoTarjeta = radioTipoTarjeta.getCheckedRadioButtonId();
 
-        if(mesVencimiento != null && anioVencimiento != null) {
+        String tipoTarjeta = "";
+
+        if ((RadioButton) findViewById(idTipoTarjeta) != null) {
+            tipoTarjeta = ((RadioButton) findViewById(idTipoTarjeta)).getText().toString();
+        }
+
+        if (mesVencimiento != null && anioVencimiento != null && tipoTarjeta != null) {
             if (tipoTarjeta.equals("Crédito")) {
                 if (!InputValidator.validarVencimientoTarjeta(Integer.parseInt(mesVencimiento), Integer.parseInt(anioVencimiento))) {
                     Toast.makeText(this, "La tarjeta de crédito debe tener un vencimiento posterior a 3 (tres) meses.", Toast.LENGTH_SHORT).show();
