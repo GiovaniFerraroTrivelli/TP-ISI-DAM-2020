@@ -16,6 +16,7 @@
     <string name="cbu">CBU</string>
     <string name="cbu_alias">Alias CBU</string>
     <string name="realizar_carga_inicial">¿Realizar carga inicial?</string>
-    <string name="credito_inicial">Crédito incial</string>
+    <string name="credito_inicial">Crédito inicial</string>
     <string name="terminos_condiciones">Acepto los términos y condiciones</string>
+    <string name="registrar">Registrar</string>
 </resources>

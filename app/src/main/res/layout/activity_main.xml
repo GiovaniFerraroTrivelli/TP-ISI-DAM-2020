@@ -152,6 +152,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="1500"
+        android:min="1"
         android:visibility="gone"
         />
 
@@ -166,7 +167,7 @@
         android:id="@+id/Registrar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Registrar"
+        android:text="@string/registrar"
         android:enabled="false"
         />
 </LinearLayout>
