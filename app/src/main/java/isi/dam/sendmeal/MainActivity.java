@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -104,8 +105,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         // Validar correo elecrónico
+        // TODO: sacar la comparación a null.
         String email = ((EditText) findViewById(R.id.Email)).getText().toString();
-        if (!InputValidator.validarCorreoElectronico(email)) {
+        if (!InputValidator.validarCorreoElectronico(email) && !email.equals("")) {
             Toast.makeText(this, "La dirección de correo ingresada no es válida", Toast.LENGTH_SHORT).show();
         }
 
@@ -131,22 +133,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        // Numero de tarjeta y ccv
-        //String numeroTarjeta = ((EditText) findViewById(R.id.CardNumber)).getText().toString();
-        //String cardCCV = ((EditText) findViewById(R.id.CardCCV)).getText().toString();
-
         // Slider de carga inicial
-        //Switch switchCargaInicial = (Switch) findViewById(R.id.RealizarCargaInicial);
+        Switch switchCargaInicial = (Switch) findViewById(R.id.RealizarCargaInicial);
 
-        /*
         if(switchCargaInicial.isChecked()){
             // TODO: La seekbar debería mostrar un valor
             int creditoInicial = ((SeekBar) findViewById(R.id.CreditoInicial)).getProgress();
-            validar = (creditoInicial > 0);
+            if(creditoInicial == 0) {
+                Toast.makeText(this, "Seleccioná un monto inicial", Toast.LENGTH_SHORT).show();
+            }
         }
-         */
-
-
     }
 
 }
