@@ -1,11 +1,11 @@
 package isi.dam.sendmeal;
 
 import android.os.Build;
+import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,22 +23,22 @@ public class InputValidator {
     }
 
     /**
-     * Verifica si el vencimiento de una tarjeta de crédito es superior a 3 los próximos tres meses
+     * Verifica si el vencimiento de una tarjeta de crédito es superior a 3 los próximos tres meses.
+     * Se asume que los parámetros de entrada fueron validados.
      * @param mes  mes de vencimiento de la tarjeta de crédito
      * @param anio año de vencimiento de la tarjeta de crédito
      * @return true (si la dirección de correo es válida)
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static boolean validarVencimientoTarjeta(Integer mes, Integer anio){
-        boolean fechaValida = false;
-        LocalDate fechaActual = LocalDate.now();
-        //.withDayOfMonth(1)) si las valdaciones no son correctas
 
-        if(mes >= 1 && mes <= 12 && anio >= fechaActual.getYear()) {
-            LocalDate fechaVencimiento = LocalDate.of(2000+anio, mes, 1);
-            fechaValida = (ChronoUnit.MONTHS.between(fechaActual, fechaVencimiento) >= 3);
-        }
+    public static boolean fechaVencimientoValida(Integer mes, Integer anio){
+        // Genera un Calendar con el mes y año dados
+        Calendar fechaVencimiento = Calendar.getInstance();
+        fechaVencimiento.set(1999+anio, mes, 1);
 
-        return fechaValida;
+        // Calcula la fecha actual y le suma 3 meses.
+        Calendar fechaLimite = Calendar.getInstance();
+        fechaLimite.add(Calendar.MONTH, 3);
+
+        return fechaVencimiento.compareTo(fechaLimite) >= 0;
     }
 }

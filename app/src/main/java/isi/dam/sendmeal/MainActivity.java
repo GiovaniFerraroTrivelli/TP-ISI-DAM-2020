@@ -1,10 +1,9 @@
 package isi.dam.sendmeal;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,7 +16,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -101,13 +99,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void onClick(View v) {
 
         // Validar correo elecrónico
-        // TODO: sacar la comparación a null.
         String email = ((EditText) findViewById(R.id.Email)).getText().toString();
-        if (!InputValidator.validarCorreoElectronico(email) && !email.equals("")) {
+        if (!InputValidator.validarCorreoElectronico(email) && !TextUtils.isEmpty(email)) {
             Toast.makeText(this, "La dirección de correo ingresada no es válida", Toast.LENGTH_SHORT).show();
         }
 
@@ -125,9 +121,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tipoTarjeta = ((RadioButton) findViewById(idTipoTarjeta)).getText().toString();
         }
 
-        if (mesVencimiento != null && anioVencimiento != null && tipoTarjeta != null) {
-            if (tipoTarjeta.equals("Crédito")) {
-                if (!InputValidator.validarVencimientoTarjeta(Integer.parseInt(mesVencimiento), Integer.parseInt(anioVencimiento))) {
+        if (!TextUtils.isEmpty(mesVencimiento) && !TextUtils.isEmpty(anioVencimiento)) {
+            if ("Crédito".equals(tipoTarjeta)) {
+                if (!InputValidator.fechaVencimientoValida(Integer.parseInt(mesVencimiento), Integer.parseInt(anioVencimiento))) {
                     Toast.makeText(this, "La tarjeta de crédito debe tener un vencimiento posterior a 3 (tres) meses.", Toast.LENGTH_SHORT).show();
                 }
             }
