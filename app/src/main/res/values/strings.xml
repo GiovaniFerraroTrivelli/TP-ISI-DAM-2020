@@ -19,4 +19,6 @@
     <string name="credito_inicial">Crédito inicial</string>
     <string name="terminos_condiciones">Acepto los términos y condiciones</string>
     <string name="registrar">Registrar</string>
+    <string name="agregar">Crear Ítem</string>
+    <string name="lista">Lista de Items</string>
 </resources>

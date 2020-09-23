@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HomeActivity">
+
+
+    <item
+        android:id="@+id/registrar"
+        android:icon="@drawable/person_white"
+        android:title="@string/registrar"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/agregar_item"
+        android:icon="@drawable/add_white"
+        android:title="@string/agregar"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/lista_items"
+        android:icon="@drawable/list_white"
+        android:title="@string/lista"
+        app:showAsAction="ifRoom"/>
+
+</menu>
+
