@@ -2,6 +2,7 @@ package isi.dam.sendmeal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -31,22 +32,23 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.registrar:
-                Log.d("onOptionsItemSelected", "registrar");
-                break;
+                Intent registarIntent =  new Intent(this, RegistrarActivity.class);
+                startActivity(registarIntent);
+                return true;
 
             case R.id.agregar_item:
                 Log.d("onOptionsItemSelected", "agregar_item");
-                break;
+                return true;
+
 
             case R.id.lista_items:
                 Log.d("onOptionsItemSelected", "lista_items");
-                break;
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
 
