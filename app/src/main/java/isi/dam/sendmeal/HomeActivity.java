@@ -36,10 +36,10 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(registarIntent);
                 return true;
 
-            case R.id.agregar_item:
-                Log.d("onOptionsItemSelected", "agregar_item");
+            case R.id.alta_plato:
+                Intent altaPlatoIntent =  new Intent(this, AltaPlatoActivity.class);
+                startActivity(altaPlatoIntent);
                 return true;
-
 
             case R.id.lista_items:
                 Log.d("onOptionsItemSelected", "lista_items");

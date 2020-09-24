@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name=".AltaPlatoActivity"
+            android:label="@string/titulo_alta_plato"
+            android:theme="@style/DefaultToolbarStyle" />
+
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +22,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="isi.dam.sendmeal.RegistrarActivity" />
+        <activity
+            android:name=".RegistrarActivity"
+            android:label="@string/titulo_registrar_usario"
+            android:theme="@style/DefaultToolbarStyle" />
     </application>
 
 </manifest>

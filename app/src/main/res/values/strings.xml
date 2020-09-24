@@ -21,6 +21,14 @@
     <string name="registrar">Registrar</string>
     <string name="agregar">Crear Ítem</string>
     <string name="lista">Lista de Items</string>
+    <string name="titulo_alta_plato">Nuevo Plato</string>
+    <string name="titulo_registrar_usario">Registrar Usario</string>
+    <string name="titulo_plato">Título</string>
+    <string name="precio_plato">Precio</string>
+    <string name="calorias_plato">Carlorías</string>
+    <string name="descripcion_plato">Descripción</string>
+    <string name="guardar_plato">Guardar</string>
+
 
     <string-array name="spinner_meses">
         <item>01</item>
