@@ -1,7 +1,7 @@
 package isi.dam.sendmeal.model;
 
 public class Plato {
-    private String nombre;
+    private String titulo;
     private String descripcion;
     private Integer precio;
     private Integer calorias;
@@ -9,12 +9,12 @@ public class Plato {
     public Plato() {
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescripcion() {
@@ -39,5 +39,10 @@ public class Plato {
 
     public void setCalorias(Integer calorias) {
         this.calorias = calorias;
+    }
+
+    @Override
+    public String toString(){
+        return this.titulo + " " + String.valueOf(this.precio) + " " + String.valueOf(this.calorias);
     }
 }

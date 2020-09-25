@@ -42,7 +42,8 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
 
             case R.id.lista_items:
-                Log.d("onOptionsItemSelected", "lista_items");
+                Intent listaPlatos =  new Intent(this, ListaPlatosActivity.class);
+                startActivity(listaPlatos);
                 return true;
 
             default:
