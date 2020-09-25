@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import isi.dam.sendmeal.model.Plato;
@@ -48,7 +49,10 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoAdapter.PlatoViewHol
 
         holder.textTituloPlato.setText(plato.getTitulo());
         holder.textDescripcionPlato.setText(plato.getDescripcion());
-        holder.textPrecioPlato.setText("$" + plato.getPrecio().toString());
+
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        holder.textPrecioPlato.setText("$" + df.format(plato.getPrecio()));
         holder.imagenPlato.setImageResource(R.drawable.sopa_maruchan);
 
         holder.textTituloPlato.setTag(position);
