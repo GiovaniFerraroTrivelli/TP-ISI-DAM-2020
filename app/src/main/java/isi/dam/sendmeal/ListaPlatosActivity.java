@@ -26,7 +26,7 @@ public class ListaPlatosActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        platoAdapter = new PlatoAdapter(PlatoDao.pruebaListaPlatos(), this);
+        platoAdapter = new PlatoAdapter(PlatoDao.getListaPlatos(), this);
         recyclerView.setAdapter(platoAdapter);
 
     }

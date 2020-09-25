@@ -31,8 +31,7 @@
                     android:id="@+id/fila_titulo_plato"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="match_parent"

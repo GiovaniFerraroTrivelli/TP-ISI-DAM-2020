@@ -3,7 +3,7 @@ package isi.dam.sendmeal.model;
 public class Plato {
     private String titulo;
     private String descripcion;
-    private Integer precio;
+    private Double precio;
     private Integer calorias;
 
     public Plato() {
@@ -25,11 +25,11 @@ public class Plato {
         this.descripcion = descripcion;
     }
 
-    public Integer getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Integer precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

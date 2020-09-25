@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import isi.dam.sendmeal.dataAccess.PlatoDao;
 import isi.dam.sendmeal.model.Plato;
 
 public class AltaPlatoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -47,10 +48,13 @@ public class AltaPlatoActivity extends AppCompatActivity implements View.OnClick
             Plato plato = new Plato();
             plato.setTitulo(titulo);
             plato.setDescripcion(descripcion);
-            plato.setPrecio(Integer.parseInt(precio));
+            plato.setPrecio(Double.parseDouble(precio));
             plato.setCalorias(Integer.parseInt(calorias));
 
             Log.d("plato", plato.toString());
+            PlatoDao.addToListaPlatos(plato);
+
+            Toast.makeText(this, "El plato " + plato.getTitulo() + " fue agregado exitosamente", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -29,6 +29,7 @@
     <string name="descripcion_plato">Descripción</string>
     <string name="guardar_plato">Guardar</string>
     <string name="titulo_lista_platos">Platos Disponibles</string>
+    <string name="welcome">¡Hola! :)</string>
 
 
     <string-array name="spinner_meses">
