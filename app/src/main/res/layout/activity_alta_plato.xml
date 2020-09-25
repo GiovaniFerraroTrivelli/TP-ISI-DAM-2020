@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AltaPlatoActivity">
+
+    <EditText
+        android:id="@+id/TituloPlato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/titulo_plato"/>
+
+    <EditText
+        android:id="@+id/DescripcionPlato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/descripcion_plato"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/PrecioPlato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="@string/precio_plato"/>
+
+        <EditText
+            android:id="@+id/CaloriasPlato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/calorias_plato"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/guardar_plato"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:text="@string/guardar_plato"
+        />
+
+
+
+
+</LinearLayout>

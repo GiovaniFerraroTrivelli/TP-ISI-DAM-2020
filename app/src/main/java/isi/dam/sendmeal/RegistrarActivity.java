@@ -12,22 +12,24 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegistrarActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText password;
     EditText confirmarPassword;
     TextView alertaPasword;
+    Spinner spinnerMesVencimiento, spinnerAnioVencimiento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registrar);
 
         final Button btnRegister = (Button) findViewById(R.id.Registrar);
         btnRegister.setOnClickListener(this);
@@ -108,8 +110,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         // Fecha Vencimiento
-        String mesVencimiento = ((EditText) findViewById(R.id.MesVencimiento)).getText().toString();
-        String anioVencimiento = ((EditText) findViewById(R.id.AnioVencimiento)).getText().toString();
+        spinnerMesVencimiento = (Spinner) findViewById(R.id.MesVencimiento);
+        spinnerAnioVencimiento = (Spinner) findViewById(R.id.AnioVencimiento);
+
+        Integer mesVencimiento = Integer.parseInt(spinnerMesVencimiento.getSelectedItem().toString());
+        Integer anioVencimiento = Integer.parseInt(spinnerAnioVencimiento.getSelectedItem().toString());
 
         // Tipo tarjeta
         RadioGroup radioTipoTarjeta = (RadioGroup) findViewById(R.id.CardType);
@@ -121,11 +126,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tipoTarjeta = ((RadioButton) findViewById(idTipoTarjeta)).getText().toString();
         }
 
-        if (!TextUtils.isEmpty(mesVencimiento) && !TextUtils.isEmpty(anioVencimiento)) {
-            if ("Crédito".equals(tipoTarjeta)) {
-                if (!InputValidator.fechaVencimientoValida(Integer.parseInt(mesVencimiento), Integer.parseInt(anioVencimiento))) {
-                    Toast.makeText(this, "La tarjeta de crédito debe tener un vencimiento posterior a 3 (tres) meses.", Toast.LENGTH_SHORT).show();
-                }
+        if ("Crédito".equals(tipoTarjeta)) {
+            if (!InputValidator.fechaVencimientoValida(mesVencimiento, anioVencimiento)) {
+                Toast.makeText(this, "La tarjeta de crédito debe tener un vencimiento posterior a 3 (tres) meses.", Toast.LENGTH_SHORT).show();
             }
         }
 

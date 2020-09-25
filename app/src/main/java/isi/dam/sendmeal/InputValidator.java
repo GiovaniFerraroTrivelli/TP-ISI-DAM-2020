@@ -1,10 +1,11 @@
 package isi.dam.sendmeal;
 
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 
 
-
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,8 +14,8 @@ public class InputValidator {
 
     /**
      * Verifica si el correo electrónico cumple con la expresión regular dada.
-     * @param correo dirección de correo eletrónico
-     * @return true (si la dirección de correo es válida)
+     * @param correo dirección de correo eletrónico.
+     * @return true (si la dirección de correo es válida).
      */
     public static boolean validarCorreoElectronico(String correo) {
         Pattern EMAIL_VALIDO = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -25,9 +26,9 @@ public class InputValidator {
     /**
      * Verifica si el vencimiento de una tarjeta de crédito es superior a 3 los próximos tres meses.
      * Se asume que los parámetros de entrada fueron validados.
-     * @param mes  mes de vencimiento de la tarjeta de crédito
-     * @param anio año de vencimiento de la tarjeta de crédito
-     * @return true (si la dirección de correo es válida)
+     * @param mes  mes de vencimiento de la tarjeta de crédito.
+     * @param anio año de vencimiento de la tarjeta de crédito.
+     * @return true (si la dirección de correo es válida).
      */
 
     public static boolean fechaVencimientoValida(Integer mes, Integer anio){
@@ -40,5 +41,20 @@ public class InputValidator {
         fechaLimite.add(Calendar.MONTH, 3);
 
         return fechaVencimiento.compareTo(fechaLimite) >= 0;
+    }
+
+    /**
+     * Verifica que los campos de los EditText para dar de alta un plato no sean nulos.
+     * @param campos valores de los EditText.
+     * @return false (si algún campo es nulo).
+     */
+    public static boolean validarAltaPlato(String[] campos) {
+        for (String campo: campos) {
+            if(TextUtils.isEmpty(campo)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

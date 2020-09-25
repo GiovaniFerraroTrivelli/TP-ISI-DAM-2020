@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
+    tools:context=".RegistrarActivity"
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
 
@@ -99,6 +99,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <Spinner
+            android:id="@+id/MesVencimiento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/spinner_meses"/>
+
+        <Spinner
+            android:id="@+id/AnioVencimiento"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/spinner_anios"/>
+
+        <!--
         <EditText
             android:id="@+id/MesVencimiento"
             android:layout_width="243dp"
@@ -113,6 +126,8 @@
             android:hint="@string/año_vencimiento"
             android:inputType="number"
             android:maxLength="2"/>
+         -->
+
     </LinearLayout>
 
     <EditText
