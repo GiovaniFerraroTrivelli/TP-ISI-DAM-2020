@@ -1,5 +1,6 @@
 package isi.dam.sendmeal;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,13 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoAdapter.PlatoViewHol
                 .inflate(R.layout.fila_plato, parent, false);
 
         PlatoViewHolder pvh = new PlatoViewHolder(v);
+        // TODO: Setear acción a CardView
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                // do someting
+            }
+        });
+
         return pvh;
     }
 
@@ -69,5 +77,6 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoAdapter.PlatoViewHol
             textPrecioPlato = itemView.findViewById(R.id.fila_precio_plato);
             imagenPlato = itemView.findViewById(R.id.imagen_plato);
         }
+
     }
 }
