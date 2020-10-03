@@ -37,6 +37,9 @@
     <string name="tipo_pedido">Tipo de Pedido</string>
     <string name="pedido_envio">Envío</string>
     <string name="pedido_takeaway">TakeAway</string>
+    <string name="agregar_platos">Agregar platos</string>
+    <string name="finalizar_pedido">Finalizar Pedido</string>
+    <string name="agregar_plato_a_pedido">Agregar Plato</string>
     <string name="welcome">¡Hola! :)</string>
 
 

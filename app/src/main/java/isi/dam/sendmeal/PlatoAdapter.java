@@ -1,9 +1,13 @@
 package isi.dam.sendmeal;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.opengl.Visibility;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +23,7 @@ import isi.dam.sendmeal.model.Plato;
 
 public class PlatoAdapter extends RecyclerView.Adapter<PlatoAdapter.PlatoViewHolder> {
     private List<Plato> listaPlatos;
-    private AppCompatActivity activity;
+    private static AppCompatActivity activity;
 
     public PlatoAdapter(List<Plato> listaPlatos, AppCompatActivity activity) {
         this.listaPlatos = listaPlatos;
@@ -33,13 +37,6 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoAdapter.PlatoViewHol
                 .inflate(R.layout.fila_plato, parent, false);
 
         PlatoViewHolder pvh = new PlatoViewHolder(v);
-        // TODO: Setear acción a CardView
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                // do someting
-            }
-        });
-
         return pvh;
     }
 
@@ -59,6 +56,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoAdapter.PlatoViewHol
         holder.textDescripcionPlato.setTag(position);
         holder.textPrecioPlato.setTag(position);
         holder.imagenPlato.setTag(position);
+        holder.botonAgregarPlato.setTag(position);
     }
 
     @Override
@@ -72,15 +70,27 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoAdapter.PlatoViewHol
         TextView textDescripcionPlato;
         TextView textPrecioPlato;
         ImageView imagenPlato;
+        Button botonAgregarPlato;
 
-        public PlatoViewHolder(@NonNull View itemView) {
+        public PlatoViewHolder(@NonNull final View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.card_view);
             textTituloPlato = itemView.findViewById(R.id.fila_titulo_plato);
             textDescripcionPlato = itemView.findViewById(R.id.fila_descripcion_plato);
             textPrecioPlato = itemView.findViewById(R.id.fila_precio_plato);
             imagenPlato = itemView.findViewById(R.id.imagen_plato);
+            botonAgregarPlato = itemView.findViewById(R.id.agregar_plato_a_pedido);
+
+            botonAgregarPlato.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    activity.setResult(Activity.RESULT_OK, intent);
+                    activity.finish();
+                }
+            });
         }
+
 
     }
 }

@@ -16,57 +16,65 @@
         card_view:cardElevation="1dp">
 
         <RelativeLayout
-            android:layout_width="311dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingHorizontal="8dp"
             android:paddingVertical="4dp">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/fila_titulo_plato"
                 android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
+
+            <TextView
+                android:id="@+id/fila_descripcion_plato"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/fila_titulo_plato"
+                android:layout_alignParentLeft="true"
+                android:textSize="15sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
+
+            <TextView
+                android:id="@+id/fila_precio_plato"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/fila_descripcion_plato"
+                android:layout_alignParentLeft="true"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imagen_plato"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="10dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="TODO"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:id="@+id/agregar_plato_a_pedido"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/fila_titulo_plato"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp" />
-
-                <TextView
-                    android:id="@+id/fila_descripcion_plato"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="15sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp" />
-
-                <TextView
-                    android:id="@+id/fila_precio_plato"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
+                android:background="@android:color/transparent"
+                android:layout_below="@id/fila_precio_plato"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/agregar_plato_a_pedido"/>
+                <!--android:visibility="gone"-->
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/imagen_plato"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginEnd="10dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="TODO"
-            android:scaleType="fitXY" />
 
     </androidx.cardview.widget.CardView>
 </LinearLayout>
