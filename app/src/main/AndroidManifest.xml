@@ -8,11 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ListaPlatosActivity"
+        android:theme="@style/NoToolbarStyle">
+        <activity android:name=".PedidoActivity"></activity>
+        <activity
+            android:name=".ListaPlatosActivity"
             android:label="@string/titulo_lista_platos"
-            android:theme="@style/DefaultToolbarStyle"/>
-
+            android:theme="@style/NoToolbarStyle" />
         <activity
             android:name=".AltaPlatoActivity"
             android:label="@string/titulo_alta_plato"

@@ -29,6 +29,14 @@
     <string name="descripcion_plato">Descripción</string>
     <string name="guardar_plato">Guardar</string>
     <string name="titulo_lista_platos">Platos Disponibles</string>
+    <string name="email_pedido">Correo Electrónico</string>
+    <string name="nuevo_pedido">Nuevo Pedido</string>
+    <string name="calle_pedido">Calle</string>
+    <string name="numero_calle_pedido">Número</string>
+    <string name="TextView_Direccion_Pedido">Dirección</string>
+    <string name="tipo_pedido">Tipo de Pedido</string>
+    <string name="pedido_envio">Envío</string>
+    <string name="pedido_takeaway">TakeAway</string>
     <string name="welcome">¡Hola! :)</string>
 
 
@@ -59,5 +67,9 @@
         <item>28</item>
         <item>29</item>
         <item>30</item>
+    </string-array>
+
+    <string-array name="spinner_ciudades">
+        <item>Santa Fe</item>
     </string-array>
 </resources>

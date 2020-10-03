@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".RegistrarActivity"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
     <EditText
         android:id="@+id/Nombre"

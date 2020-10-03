@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PedidoActivity"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/Email_pedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email_pedido"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/TextView_Direccion_Pedido">
+    </TextView>
+
+    <EditText
+        android:id="@+id/Calle_pedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/calle_pedido"/>
+
+    <EditText
+        android:id="@+id/Numero_calle_pedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/numero_calle_pedido"/>
+
+    <Spinner
+        android:id="@+id/Spinner_ciudades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinner_ciudades"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tipo_pedido"/>
+
+    <RadioGroup
+        android:id="@+id/Tipo_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <RadioButton
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pedido_envio" />
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pedido_takeaway"/>
+    </RadioGroup>
+
+
+
+</LinearLayout>
