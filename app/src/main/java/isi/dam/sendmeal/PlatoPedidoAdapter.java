@@ -14,7 +14,7 @@ import java.util.List;
 
 import isi.dam.sendmeal.model.Plato;
 
-public class PlatoPedidoAdapter extends RecyclerView.Adapter<PlatoPedidoAdapter.PlatoViewHolder> {
+public class PlatoPedidoAdapter extends RecyclerView.Adapter<PlatoPedidoAdapter.PlatoPedidoViewHolder> {
     private static AppCompatActivity activity;
     private List<Plato> listaPlatos;
 
@@ -25,16 +25,16 @@ public class PlatoPedidoAdapter extends RecyclerView.Adapter<PlatoPedidoAdapter.
 
     @NonNull
     @Override
-    public PlatoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlatoPedidoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fila_plato_pedido, parent, false);
 
-        PlatoViewHolder pvh = new PlatoViewHolder(v);
+        PlatoPedidoViewHolder pvh = new PlatoPedidoViewHolder(v);
         return pvh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlatoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlatoPedidoViewHolder holder, int position) {
         Plato plato = listaPlatos.get(position);
         holder.textTituloPlato.setText(plato.getTitulo());
         DecimalFormat df = new DecimalFormat("#.00");
@@ -48,14 +48,14 @@ public class PlatoPedidoAdapter extends RecyclerView.Adapter<PlatoPedidoAdapter.
         return listaPlatos.size();
     }
 
-    public static class PlatoViewHolder extends RecyclerView.ViewHolder {
+    public static class PlatoPedidoViewHolder extends RecyclerView.ViewHolder {
         TextView textTituloPlato;
         TextView textPrecioPlato;
 
-        public PlatoViewHolder(@NonNull View itemView) {
+        public PlatoPedidoViewHolder(@NonNull View itemView) {
             super(itemView);
-            textTituloPlato = itemView.findViewById(R.id.fila_titulo_plato);
-            textPrecioPlato = itemView.findViewById(R.id.fila_precio_plato);
+            textTituloPlato = itemView.findViewById(R.id.titulo_plato_pedido);
+            textPrecioPlato = itemView.findViewById(R.id.precio_plato_pedido);
         }
     }
 }

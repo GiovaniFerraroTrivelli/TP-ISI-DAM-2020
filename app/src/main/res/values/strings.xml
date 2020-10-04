@@ -40,8 +40,9 @@
     <string name="agregar_platos">Agregar platos</string>
     <string name="finalizar_pedido">Finalizar Pedido</string>
     <string name="agregar_plato_a_pedido">Agregar Plato</string>
+    <string name="titulo_alta_pedido">Nuevo Pedido</string>
+    <string name="detalle_pedido">Detalle del pedido</string>
     <string name="welcome">¡Hola! :)</string>
-
 
     <string-array name="spinner_meses">
         <item>01</item>
@@ -74,5 +75,10 @@
 
     <string-array name="spinner_ciudades">
         <item>Santa Fe</item>
+    </string-array>
+
+    <string-array name="spinner_tipo_pedido">
+        <item>Envío a Domicilio</item>
+        <item>TakeAway</item>
     </string-array>
 </resources>

@@ -2,13 +2,19 @@ package isi.dam.sendmeal;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,19 +24,49 @@ public class PedidoActivity extends AppCompatActivity {
 
     private static final int LISTA_PLATOS_REQUEST_CODE = 0;
     static public List<Plato> listaPlatosPedido = new ArrayList<Plato>();
-    private Spinner spinnerCiudades;
     private RecyclerView recyclerView;
+    private EditText textEmail;
+    private EditText textCallePedido;
+    private Spinner spinnerCiudades;
+    private EditText textNroCallePedido;
     private PlatoPedidoAdapter platoAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private TextView total;
+    private TextView textCantidadPlatos;
+    private TextView textFilaDetallePedido;
+    private TextView textPrecioPedido;
+    private View linea;
+
+    static public Boolean addToListaPlatosPedido(Plato plato) {
+        return listaPlatosPedido.add(plato);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido);
 
-        // Solo admite una ciudad
+        textEmail = (EditText) findViewById(R.id.Email_pedido);
+        textCallePedido = (EditText) findViewById(R.id.Calle_pedido);
+        textNroCallePedido = (EditText) findViewById(R.id.Numero_calle_pedido);
+
+        // Sólo admite una ciudad
         spinnerCiudades = (Spinner) findViewById(R.id.Spinner_ciudades);
         spinnerCiudades.setEnabled(false);
+
+
+        recyclerView = findViewById(R.id.recycler_view_platos_pedido);
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        platoAdapter = new PlatoPedidoAdapter(listaPlatosPedido, this);
+        recyclerView.setAdapter(platoAdapter);
+        textFilaDetallePedido = (TextView) findViewById(R.id.Fila_detalle_pedido);
+        textPrecioPedido = (TextView) findViewById(R.id.Precio_pedido);
+        linea = (View) findViewById(R.id.Space);
+        total = (TextView) findViewById(R.id.Total);
+        textCantidadPlatos = (TextView) findViewById(R.id.Cantidad_platos);
     }
 
     static public Boolean addToListaPlatos(Plato plato) {
@@ -43,11 +79,26 @@ public class PedidoActivity extends AppCompatActivity {
 
     public void onClickAgregarPlatos(View view) {
         Intent intentListaPlatos = new Intent(this, ListaPlatosActivity.class);
-        intentListaPlatos.putExtra("SENDER_CLASS", String.valueOf(PedidoActivity.class));
         startActivityForResult(intentListaPlatos, LISTA_PLATOS_REQUEST_CODE);
     }
 
     public void onClickPedir(View view) {
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("EMAIL", String.valueOf(textEmail.getText()));
+        outState.putString("CALLE_PEDIDO", String.valueOf(textCallePedido.getText()));
+        outState.putString("NRO_CALLE_PEDIDO", String.valueOf(textNroCallePedido.getText()));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        textEmail.setText(savedInstanceState.getString("EMAIL"));
+        textCallePedido.setText(savedInstanceState.getString("CALLE_PEDIDO"));
+        textNroCallePedido.setText(savedInstanceState.getString("NRO_CALLE_PEDIDO"));
+        this.actualizarDetallePedido();
     }
 
     @Override
@@ -57,10 +108,29 @@ public class PedidoActivity extends AppCompatActivity {
         // check that it is the SecondActivity with an OK result
         if (requestCode == LISTA_PLATOS_REQUEST_CODE) {
             if (resultCode == RESULT_OK) { // Activity.RESULT_OK
-
-                Log.d("result", "here");
-
+                this.recyclerView.getAdapter().notifyDataSetChanged();
+                this.actualizarDetallePedido();
             }
         }
+    }
+
+    void actualizarDetallePedido() {
+        if (!listaPlatosPedido.isEmpty()) {
+            textFilaDetallePedido.setVisibility(View.VISIBLE);
+            linea.setVisibility(View.VISIBLE);
+            total.setVisibility(View.VISIBLE);
+            textCantidadPlatos.setText(String.valueOf(listaPlatosPedido.size()).concat(" plato(s)"));
+            textCantidadPlatos.setVisibility(View.VISIBLE);
+            DecimalFormat df = new DecimalFormat("#.00");
+            textPrecioPedido.setText("$" + df.format(calcularPrecioTotal()));
+            textPrecioPedido.setVisibility(View.VISIBLE);
+        }
+    }
+
+    static private Double calcularPrecioTotal() {
+        Double total = 0.00;
+        for (Plato p : listaPlatosPedido)
+            total += p.getPrecio();
+        return total;
     }
 }
