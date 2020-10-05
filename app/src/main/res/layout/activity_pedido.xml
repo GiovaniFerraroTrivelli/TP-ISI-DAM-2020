@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Agregar_platos"
         android:layout_centerInParent="true"
-        android:onClick="onClickPedir"
+        android:onClick="onClickFinalizarPedido"
         android:text="@string/finalizar_pedido" />
 
 </RelativeLayout>

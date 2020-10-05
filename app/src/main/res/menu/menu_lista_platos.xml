@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/nuevo_pedido"
-        android:icon="@drawable/add_shopping_cart_white"
+        android:icon="@drawable/shopping_basket_white"
         android:title="@string/nuevo_pedido"
         app:showAsAction="ifRoom"/>
 

@@ -1,6 +1,10 @@
 package isi.dam.sendmeal;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -36,10 +38,8 @@ public class PedidoActivity extends AppCompatActivity {
     private TextView textPrecioPedido;
     private View linea;
 
-    static public Boolean addToListaPlatosPedido(Plato plato) {
-        return listaPlatosPedido.add(plato);
-    }
-
+    // TODO: Revisar qué clase deberia tener el BroadcastReceiver
+    private CustomReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +67,14 @@ public class PedidoActivity extends AppCompatActivity {
         linea = (View) findViewById(R.id.Space);
         total = (TextView) findViewById(R.id.Total);
         textCantidadPlatos = (TextView) findViewById(R.id.Cantidad_platos);
-    }
 
-    static public Boolean addToListaPlatos(Plato plato) {
-        return listaPlatosPedido.add(plato);
-    }
+        broadcastReceiver = new CustomReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(CustomReceiver.EVENTO_PEDIDO_REGISTRADO);
+        this.registerReceiver(broadcastReceiver, filter);
 
-    public static List<Plato> getListaPlatosPedido() {
-        return listaPlatosPedido;
-    }
-
-    public void onClickAgregarPlatos(View view) {
-        Intent intentListaPlatos = new Intent(this, ListaPlatosActivity.class);
-        startActivityForResult(intentListaPlatos, LISTA_PLATOS_REQUEST_CODE);
-    }
-
-    public void onClickPedir(View view) {
+        //TODO: Revisar qué hace esto.
+        //crearCanal(this);
     }
 
     @Override
@@ -114,6 +106,16 @@ public class PedidoActivity extends AppCompatActivity {
         }
     }
 
+    public void onClickAgregarPlatos(View view) {
+        Intent intentListaPlatos = new Intent(this, ListaPlatosActivity.class);
+        startActivityForResult(intentListaPlatos, LISTA_PLATOS_REQUEST_CODE);
+    }
+
+    public void onClickFinalizarPedido(View view) {
+        Intent intent = new Intent(this, CustomIntentService.class);
+        startService(intent);
+    }
+
     void actualizarDetallePedido() {
         if (!listaPlatosPedido.isEmpty()) {
             textFilaDetallePedido.setVisibility(View.VISIBLE);
@@ -121,16 +123,38 @@ public class PedidoActivity extends AppCompatActivity {
             total.setVisibility(View.VISIBLE);
             textCantidadPlatos.setText(String.valueOf(listaPlatosPedido.size()).concat(" plato(s)"));
             textCantidadPlatos.setVisibility(View.VISIBLE);
-            DecimalFormat df = new DecimalFormat("#.00");
-            textPrecioPedido.setText("$" + df.format(calcularPrecioTotal()));
+            DecimalFormat df = new DecimalFormat("#,##");
+            textPrecioPedido.setText("$".concat(df.format(calcularPrecioTotal())));
             textPrecioPedido.setVisibility(View.VISIBLE);
         }
     }
 
     static private Double calcularPrecioTotal() {
-        Double total = 0.00;
+        Double total = 0.0;
         for (Plato p : listaPlatosPedido)
             total += p.getPrecio();
         return total;
     }
+
+    static public Boolean addToListaPlatos(Plato plato) {
+        return listaPlatosPedido.add(plato);
+    }
+
+    public static List<Plato> getListaPlatosPedido() {
+        return listaPlatosPedido;
+    }
+
+    public static void addToListaPlatosPedido(Plato plato) {
+        listaPlatosPedido.add(plato);
+    }
+
+    public void crearCanal(Context context) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel notificationChannel = new NotificationChannel(CustomReceiver.NOTIFICATION_CHANNEL_ID, "NOTIFICATION_CHANNEL_NAME", importance);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
+
 }
