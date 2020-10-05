@@ -123,7 +123,7 @@ public class PedidoActivity extends AppCompatActivity {
             total.setVisibility(View.VISIBLE);
             textCantidadPlatos.setText(String.valueOf(listaPlatosPedido.size()).concat(" plato(s)"));
             textCantidadPlatos.setVisibility(View.VISIBLE);
-            DecimalFormat df = new DecimalFormat("#,##");
+            DecimalFormat df = new DecimalFormat("#.00");
             textPrecioPedido.setText("$".concat(df.format(calcularPrecioTotal())));
             textPrecioPedido.setVisibility(View.VISIBLE);
         }

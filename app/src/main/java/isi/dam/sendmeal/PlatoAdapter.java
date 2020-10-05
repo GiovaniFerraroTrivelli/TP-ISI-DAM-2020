@@ -40,7 +40,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoAdapter.PlatoViewHol
         Plato plato = listaPlatos.get(position);
         holder.textTituloPlato.setText(plato.getTitulo());
         holder.textDescripcionPlato.setText(plato.getDescripcion());
-        DecimalFormat df = new DecimalFormat("#,##");
+        DecimalFormat df = new DecimalFormat("#.00");
         holder.textPrecioPlato.setText("$".concat(df.format(plato.getPrecio())));
         holder.imagenPlato.setImageResource(R.drawable.sopa_maruchan);
         holder.textTituloPlato.setTag(position);
