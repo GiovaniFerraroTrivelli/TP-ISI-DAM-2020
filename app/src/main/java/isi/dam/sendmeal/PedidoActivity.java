@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,7 +75,7 @@ public class PedidoActivity extends AppCompatActivity {
         this.registerReceiver(broadcastReceiver, filter);
 
         //TODO: Revisar qué hace esto.
-        //crearCanal(this);
+        crearCanal(this);
     }
 
     @Override
@@ -112,6 +113,10 @@ public class PedidoActivity extends AppCompatActivity {
     }
 
     public void onClickFinalizarPedido(View view) {
+        if(listaPlatosPedido.isEmpty()) {
+            Toast.makeText(this, "¡No agregaste ningún plato!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(this, CustomIntentService.class);
         startService(intent);
     }
@@ -152,7 +157,7 @@ public class PedidoActivity extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel notificationChannel = new NotificationChannel(CustomReceiver.NOTIFICATION_CHANNEL_ID, "NOTIFICATION_CHANNEL_NAME", importance);
+            NotificationChannel notificationChannel = new NotificationChannel(CustomReceiver.NOTIFICATION_CHANNEL_ID, "Confirmación de pedidos", importance);
             notificationManager.createNotificationChannel(notificationChannel);
         }
     }

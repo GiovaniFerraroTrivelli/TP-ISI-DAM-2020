@@ -11,13 +11,14 @@
         android:id="@+id/Email_pedido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
         android:hint="@string/email_pedido"/>
 
     <TextView
         android:id="@+id/Text_direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="3dp"
+        android:paddingStart="3dp"
         android:layout_below="@id/Email_pedido"
         android:textStyle="bold"
         android:text="@string/TextView_Direccion_Pedido">

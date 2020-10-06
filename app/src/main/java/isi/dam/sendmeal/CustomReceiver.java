@@ -22,7 +22,7 @@ public class CustomReceiver extends BroadcastReceiver {
 
     private void enviarNotificacionPedido(Context context, Intent intent) {
         Intent intentNotificacionPedido = new Intent(context, PedidoActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intentNotificacionPedido, 0);
+        //PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intentNotificacionPedido, 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.person_white)

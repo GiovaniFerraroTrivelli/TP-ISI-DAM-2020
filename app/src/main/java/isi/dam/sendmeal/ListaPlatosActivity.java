@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -60,10 +61,15 @@ public class ListaPlatosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nuevo_pedido:
-                Intent registarIntent =  new Intent(this, PedidoActivity.class);
-                startActivity(registarIntent);
-                return true;
+                if(!PlatoDao.getListaPlatos().isEmpty()) {
+                    Intent registarIntent =  new Intent(this, PedidoActivity.class);
+                    startActivity(registarIntent);
+                }
+                else {
+                    Toast.makeText(this, "No hay platos cargados", Toast.LENGTH_SHORT).show();
+                }
 
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
