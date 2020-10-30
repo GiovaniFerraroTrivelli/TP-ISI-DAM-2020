@@ -1,10 +1,16 @@
 package isi.dam.sendmeal.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Plato {
-    private String titulo;
-    private String descripcion;
-    private Double precio;
-    private Integer calorias;
+    @PrimaryKey(autoGenerate = true)
+    Long id;
+    String titulo;
+    String descripcion;
+    Double precio;
+    Integer calorias;
 
     public Plato() {
     }
