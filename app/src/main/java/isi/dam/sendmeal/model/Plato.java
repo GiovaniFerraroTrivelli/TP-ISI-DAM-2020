@@ -47,8 +47,21 @@ public class Plato {
         this.calorias = calorias;
     }
 
+    public void setId(Long id){
+        this.id = id;
+    }
+    public Long getId(){
+        return id;
+    }
+
     @Override
-    public String toString(){
-        return this.titulo + " " + String.valueOf(this.precio) + " " + String.valueOf(this.calorias);
+    public String toString() {
+        return "Plato{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", calorias=" + calorias +
+                '}';
     }
 }

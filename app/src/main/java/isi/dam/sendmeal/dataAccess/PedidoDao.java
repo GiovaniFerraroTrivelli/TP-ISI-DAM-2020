@@ -1,5 +1,6 @@
 package isi.dam.sendmeal.dataAccess;
 
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -8,6 +9,7 @@ import androidx.room.Update;
 import java.util.List;
 import isi.dam.sendmeal.model.Pedido;
 
+@Dao
 public interface PedidoDao {
     @Insert
     void insertar(Pedido pedido);

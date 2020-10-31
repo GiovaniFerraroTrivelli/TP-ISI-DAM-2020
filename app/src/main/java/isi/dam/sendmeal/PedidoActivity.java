@@ -134,7 +134,7 @@ public class PedidoActivity extends AppCompatActivity implements PedidoRepositor
         pedido.setEmail(String.valueOf(textEmail.getText()));
         pedido.setNroCalle(Integer.parseInt(textNroCallePedido.getText().toString()));
         pedido.setPlatos((ArrayList<Plato>) listaPlatosPedido);
-        pedido.setTotal(this.calcularPrecioTotal());
+        pedido.setTotal(Float.parseFloat(this.calcularPrecioTotal().toString()));
 
         repository.insertar(pedido);
     }
@@ -144,7 +144,7 @@ public class PedidoActivity extends AppCompatActivity implements PedidoRepositor
             textFilaDetallePedido.setVisibility(View.VISIBLE);
             linea.setVisibility(View.VISIBLE);
             total.setVisibility(View.VISIBLE);
-            textCantidadPlatos.setText(String.valueOf(listaPlatosPedido.size()).concat(" plato(s)"));
+            textCantidadPlatos.setText(String.valueOf(listaPlatosPedido.size()));
             textCantidadPlatos.setVisibility(View.VISIBLE);
             DecimalFormat df = new DecimalFormat("#.00");
             textPrecioPedido.setText("$".concat(df.format(calcularPrecioTotal())));
@@ -152,7 +152,7 @@ public class PedidoActivity extends AppCompatActivity implements PedidoRepositor
         }
     }
 
-    static private Float calcularPrecioTotal() {
+    static private Double calcularPrecioTotal() {
         Double total = 0.0;
         for (Plato p : listaPlatosPedido)
             total += p.getPrecio();

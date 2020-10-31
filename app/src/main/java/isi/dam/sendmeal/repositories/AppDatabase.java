@@ -5,16 +5,19 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import isi.dam.sendmeal.Converters;
 import isi.dam.sendmeal.dataAccess.PedidoDao;
 import isi.dam.sendmeal.dataAccess.PlatoDao;
 import isi.dam.sendmeal.model.Pedido;
 import isi.dam.sendmeal.model.Plato;
 
 @Database(entities = {Plato.class, Pedido.class}, version = 1)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE = null;
 

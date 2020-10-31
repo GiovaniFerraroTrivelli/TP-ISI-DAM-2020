@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Pedido {
     @PrimaryKey(autoGenerate = true)
     public Long id;
-    public String platos;
+    public ArrayList<Plato> platos;
     public String ciudad;
     public String calle;
     public Integer nroCalle;
