@@ -8,14 +8,14 @@ import java.util.ArrayList;
 @Entity
 public class Pedido {
     @PrimaryKey(autoGenerate = true)
-    Long id;
-    private ArrayList<Plato> platos;
-    private String ciudad;
-    private String calle;
-    private Integer nroCalle;
-    private String email;
-    private Float total;
-    private Integer cantidad;
+    public Long id;
+    public String platos;
+    public String ciudad;
+    public String calle;
+    public Integer nroCalle;
+    public String email;
+    public Float total;
+    public Integer cantidad;
 
     public Long getId() {
         return id;

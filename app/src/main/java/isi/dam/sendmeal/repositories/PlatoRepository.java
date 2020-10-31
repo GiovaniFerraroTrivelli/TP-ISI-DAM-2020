@@ -7,26 +7,22 @@ import android.util.Log;
 import androidx.room.*;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import isi.dam.sendmeal.BuscarPlatos;
 import isi.dam.sendmeal.OnPlatoResultCallback;
 import isi.dam.sendmeal.dataAccess.PlatoDao;
 import isi.dam.sendmeal.model.Plato;
 
-public class AppRepository implements OnPlatoResultCallback {
+public class PlatoRepository implements OnPlatoResultCallback {
     private PlatoDao platoDao;
     private OnResultCallback callback;
 
-    public AppRepository(Application application, OnResultCallback context){
+    public PlatoRepository(Application application, OnResultCallback context){
         AppDatabase db = AppDatabase.getInstance(application);
         platoDao = db.platoDao();
         callback = context;
-    }
-
-    public static AppRepository getInstance( Context context) {
-        /*if(REPO = null){
-            REPO = new AppRepository(context);
-        }
-        return REPO;*/
     }
 
     @Override
@@ -40,6 +36,7 @@ public class AppRepository implements OnPlatoResultCallback {
             @Override
             public void run() {
                 platoDao.insertar(plato);
+                callback.onInsert();
             }
         });
     }
@@ -62,9 +59,9 @@ public class AppRepository implements OnPlatoResultCallback {
         });
     }
 
-    public void buscar(String id) {
+    /*public void buscar(String id) {
         new BuscarPlatoById(platoDao, this).execute(id);
-    }
+    }*/
 
     public void buscarTodos() {
         new BuscarPlatos(platoDao, this).execute();
@@ -73,5 +70,6 @@ public class AppRepository implements OnPlatoResultCallback {
 
     public interface OnResultCallback<T> {
         void onResult(List<T> result);
+        void onInsert();
     }
 }

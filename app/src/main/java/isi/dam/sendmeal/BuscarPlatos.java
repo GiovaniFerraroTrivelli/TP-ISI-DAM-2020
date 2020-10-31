@@ -7,7 +7,7 @@ import java.util.List;
 import isi.dam.sendmeal.dataAccess.PlatoDao;
 import isi.dam.sendmeal.model.Plato;
 
-class BuscarPlatos extends AsyncTask<String, Void, List<Plato>> {
+public class BuscarPlatos extends AsyncTask<String, Void, List<Plato>> {
 
     private PlatoDao dao;
     private OnPlatoResultCallback callback;

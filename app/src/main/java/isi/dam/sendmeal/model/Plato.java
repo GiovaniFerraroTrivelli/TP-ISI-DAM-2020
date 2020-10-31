@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Plato {
     @PrimaryKey(autoGenerate = true)
-    Long id;
-    String titulo;
-    String descripcion;
-    Double precio;
-    Integer calorias;
+    public Long id;
+    public String titulo;
+    public String descripcion;
+    public Double precio;
+    public Integer calorias;
 
     public Plato() {
     }

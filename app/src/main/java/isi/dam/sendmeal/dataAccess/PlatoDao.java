@@ -13,16 +13,6 @@ import isi.dam.sendmeal.model.Plato;
 
 @Dao
 public interface PlatoDao {
-    static public List<Plato> listaPlatos = new ArrayList<Plato>();
-
-    /*static public Boolean addToListaPlatos(Plato plato) {
-        return listaPlatos.add(plato);
-    }
-
-    static public List<Plato> getListaPlatos() {
-        return listaPlatos;
-    }*/
-
     @Insert
     void insertar(Plato plato);
 
@@ -36,5 +26,8 @@ public interface PlatoDao {
     Plato buscar(String id);
 
     @Query("SELECT * FROM plato")
-    public List<Plato> buscarTodos();
+    List<Plato> buscarTodos();
+
+    @Query("DELETE FROM plato")
+    void borrarTodo();
 }

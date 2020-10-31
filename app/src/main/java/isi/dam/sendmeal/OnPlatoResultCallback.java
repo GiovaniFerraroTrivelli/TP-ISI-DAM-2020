@@ -4,6 +4,6 @@ import java.util.List;
 
 import isi.dam.sendmeal.model.Plato;
 
-interface OnPlatoResultCallback {
+public interface OnPlatoResultCallback {
     void onResult(List<Plato> plato);
 }

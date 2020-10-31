@@ -1,9 +1,7 @@
 package isi.dam.sendmeal;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -13,14 +11,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import isi.dam.sendmeal.dataAccess.PlatoDao;
+import java.util.List;
 
-public class ListaPlatosActivity extends AppCompatActivity {
+import isi.dam.sendmeal.repositories.PlatoRepository;
+
+public class ListaPlatosActivity extends AppCompatActivity implements PlatoRepository.OnResultCallback {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private PlatoAdapter platoAdapter;
     private PlatoAdapterFromAltaPedido platoAdapterFromAltaPedido;
     private RecyclerView.LayoutManager layoutManager;
+    private PlatoRepository repository;
+    private Boolean hasPlatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +41,30 @@ public class ListaPlatosActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        repository = new PlatoRepository(this.getApplication(), this);
+        repository.buscarTodos();
+    }
+
+    @Override
+    public void onResult(List result) {
+
+        // TODO: ARREGLAR ESTO URGENTE
         // verifica si la actividad fue iniciada desde PedidoActivity (!= null)
         // o desde HomeActivity (== null), y setea el adapter corespondiente.
         if(this.getCallingActivity() != null) {
-            platoAdapterFromAltaPedido = new PlatoAdapterFromAltaPedido(PlatoDao.getListaPlatos(), this);
+            platoAdapterFromAltaPedido = new PlatoAdapterFromAltaPedido(result, this);
             recyclerView.setAdapter(platoAdapterFromAltaPedido);
         }
         else {
-            platoAdapter = new PlatoAdapter(PlatoDao.getListaPlatos(), this);
+            platoAdapter = new PlatoAdapter(result, this);
             recyclerView.setAdapter(platoAdapter);
         }
+
+        hasPlatos = result.size() > 0;
+    }
+
+    @Override
+    public void onInsert() {
     }
 
     @Override
@@ -61,7 +77,7 @@ public class ListaPlatosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nuevo_pedido:
-                if(!PlatoDao.getListaPlatos().isEmpty()) {
+                if(hasPlatos) {
                     Intent registarIntent =  new Intent(this, PedidoActivity.class);
                     startActivity(registarIntent);
                 }
