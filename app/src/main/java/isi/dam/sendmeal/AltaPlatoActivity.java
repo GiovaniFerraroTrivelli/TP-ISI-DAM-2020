@@ -9,20 +9,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import isi.dam.sendmeal.dataAccess.PlatoDao;
-import isi.dam.sendmeal.model.Plato;
+import java.util.List;
 
-public class AltaPlatoActivity extends AppCompatActivity implements View.OnClickListener {
+import isi.dam.sendmeal.model.Plato;
+import isi.dam.sendmeal.repositories.PlatoRepository;
+
+public class AltaPlatoActivity extends AppCompatActivity implements PlatoRepository.OnResultCallback, View.OnClickListener {
     Button buttonGuardar;
     EditText textTituloPlato;
     EditText textDescripcionPlato;
     EditText textPrecioPlato;
     EditText textCaloriasPlato;
+    PlatoRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_plato);
+
+        repository = new PlatoRepository(this.getApplication(), this);
 
         buttonGuardar = (Button) findViewById(R.id.guardar_plato);
         buttonGuardar.setOnClickListener(this);
@@ -52,9 +57,21 @@ public class AltaPlatoActivity extends AppCompatActivity implements View.OnClick
             plato.setCalorias(Integer.parseInt(calorias));
 
             Log.d("plato", plato.toString());
-            PlatoDao.addToListaPlatos(plato);
-
-            Toast.makeText(this, "El plato " + plato.getTitulo() + " fue agregado exitosamente", Toast.LENGTH_SHORT).show();
+            repository.insertar(plato);
         }
+    }
+
+    @Override
+    public void onResult(List result) {
+    }
+
+    @Override
+    public void onInsert() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(AltaPlatoActivity.this, "¡Plato agregado!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

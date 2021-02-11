@@ -1,10 +1,16 @@
 package isi.dam.sendmeal.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Plato {
-    private String titulo;
-    private String descripcion;
-    private Double precio;
-    private Integer calorias;
+    @PrimaryKey(autoGenerate = true)
+    public Long id;
+    public String titulo;
+    public String descripcion;
+    public Double precio;
+    public Integer calorias;
 
     public Plato() {
     }
@@ -41,8 +47,21 @@ public class Plato {
         this.calorias = calorias;
     }
 
+    public void setId(Long id){
+        this.id = id;
+    }
+    public Long getId(){
+        return id;
+    }
+
     @Override
-    public String toString(){
-        return this.titulo + " " + String.valueOf(this.precio) + " " + String.valueOf(this.calorias);
+    public String toString() {
+        return "Plato{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", calorias=" + calorias +
+                '}';
     }
 }

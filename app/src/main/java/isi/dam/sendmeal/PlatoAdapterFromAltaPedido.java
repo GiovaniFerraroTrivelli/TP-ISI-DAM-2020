@@ -49,12 +49,13 @@ public class PlatoAdapterFromAltaPedido extends RecyclerView.Adapter<PlatoAdapte
 
         holder.textPrecioPlato.setText("$" + df.format(plato.getPrecio()));
         holder.imagenPlato.setImageResource(R.drawable.sopa_maruchan);
-
+        holder.hiddenIdPlato.setText(plato.getId().toString());
         holder.textTituloPlato.setTag(position);
         holder.textDescripcionPlato.setTag(position);
         holder.textPrecioPlato.setTag(position);
         holder.imagenPlato.setTag(position);
         holder.botonAgregarPlato.setTag(position);
+
     }
 
     @Override
@@ -66,6 +67,7 @@ public class PlatoAdapterFromAltaPedido extends RecyclerView.Adapter<PlatoAdapte
         CardView card;
         TextView textTituloPlato;
         TextView textDescripcionPlato;
+        TextView hiddenIdPlato;
         TextView textPrecioPlato;
         ImageView imagenPlato;
         Button botonAgregarPlato;
@@ -78,6 +80,7 @@ public class PlatoAdapterFromAltaPedido extends RecyclerView.Adapter<PlatoAdapte
             textPrecioPlato = itemView.findViewById(R.id.fila_precio_plato);
             imagenPlato = itemView.findViewById(R.id.imagen_plato);
             botonAgregarPlato = itemView.findViewById(R.id.agregar_plato_a_pedido);
+            hiddenIdPlato = itemView.findViewById(R.id.id_plato);
 
             botonAgregarPlato.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,6 +88,9 @@ public class PlatoAdapterFromAltaPedido extends RecyclerView.Adapter<PlatoAdapte
                     Plato p = new Plato();
                     p.setTitulo((String) textTituloPlato.getText());
                     p.setPrecio(Double.parseDouble(((String) textPrecioPlato.getText()).substring(1)));
+                    p.setDescripcion((String) textDescripcionPlato.getText());
+                    p.setId(Long.parseLong((String) hiddenIdPlato.getText()));
+
                     PedidoActivity.addToListaPlatosPedido(p);
 
                     Intent intent = new Intent();

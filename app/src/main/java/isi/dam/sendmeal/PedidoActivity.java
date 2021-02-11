@@ -21,9 +21,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import isi.dam.sendmeal.model.Pedido;
 import isi.dam.sendmeal.model.Plato;
+import isi.dam.sendmeal.repositories.PedidoRepository;
+import isi.dam.sendmeal.repositories.PlatoRepository;
 
-public class PedidoActivity extends AppCompatActivity {
+public class PedidoActivity extends AppCompatActivity implements PedidoRepository.OnResultCallback {
 
     private static final int LISTA_PLATOS_REQUEST_CODE = 0;
     static public List<Plato> listaPlatosPedido = new ArrayList<Plato>();
@@ -38,9 +41,11 @@ public class PedidoActivity extends AppCompatActivity {
     private TextView textFilaDetallePedido;
     private TextView textPrecioPedido;
     private View linea;
+    private Pedido pedido;
 
     // TODO: Revisar qué clase deberia tener el BroadcastReceiver
     private CustomReceiver broadcastReceiver;
+    PedidoRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,8 @@ public class PedidoActivity extends AppCompatActivity {
         spinnerCiudades = (Spinner) findViewById(R.id.Spinner_ciudades);
         spinnerCiudades.setEnabled(false);
 
+        repository = new PedidoRepository(this.getApplication(), this);
+        pedido = new Pedido();
 
         recyclerView = findViewById(R.id.recycler_view_platos_pedido);
         recyclerView.setVisibility(View.VISIBLE);
@@ -119,6 +126,17 @@ public class PedidoActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, CustomIntentService.class);
         startService(intent);
+
+        pedido.setCalle(String.valueOf(textCallePedido.getText()));
+        pedido.setCantidad(Integer.parseInt(textCantidadPlatos.getText().toString()));
+        // TODO: Fixear porque no hay ciudad
+        pedido.setCiudad("aca va la ciudad");
+        pedido.setEmail(String.valueOf(textEmail.getText()));
+        pedido.setNroCalle(Integer.parseInt(textNroCallePedido.getText().toString()));
+        pedido.setPlatos((ArrayList<Plato>) listaPlatosPedido);
+        pedido.setTotal(Float.parseFloat(this.calcularPrecioTotal().toString()));
+
+        repository.insertar(pedido);
     }
 
     void actualizarDetallePedido() {
@@ -126,7 +144,7 @@ public class PedidoActivity extends AppCompatActivity {
             textFilaDetallePedido.setVisibility(View.VISIBLE);
             linea.setVisibility(View.VISIBLE);
             total.setVisibility(View.VISIBLE);
-            textCantidadPlatos.setText(String.valueOf(listaPlatosPedido.size()).concat(" plato(s)"));
+            textCantidadPlatos.setText(String.valueOf(listaPlatosPedido.size()));
             textCantidadPlatos.setVisibility(View.VISIBLE);
             DecimalFormat df = new DecimalFormat("#.00");
             textPrecioPedido.setText("$".concat(df.format(calcularPrecioTotal())));
@@ -162,4 +180,13 @@ public class PedidoActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onResult(List result) {
+
+    }
+
+    @Override
+    public void onInsert() {
+
+    }
 }

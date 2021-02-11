@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="isi.dam.sendmeal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoToolbarStyle"
+        android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
 
         <activity android:name=".HomeActivity">
