@@ -9,14 +9,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiInterface {
 
     private static ApiInterface INSTANCE;
-    private static final String urlApiRest = "http://10.0.2.2/";
+    private static final String urlApiRest = "http://10.0.2.2:3001/";
     private Retrofit retrofit;
 
     private ApiInterface() {
 
         Gson gson = new GsonBuilder().setLenient().create();
         retrofit = new Retrofit.Builder()
-                .baseUrl("{urlApiRest}/")
+                .baseUrl("{urlApiRest}")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
