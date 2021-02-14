@@ -1,13 +1,18 @@
-package isi.dam.sendmeal;
+package isi.dam.sendmeal.activities;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,18 +22,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import isi.dam.sendmeal.CustomIntentService;
+import isi.dam.sendmeal.CustomReceiver;
+import isi.dam.sendmeal.adapters.PlatoPedidoAdapter;
+import isi.dam.sendmeal.R;
 import isi.dam.sendmeal.model.Pedido;
 import isi.dam.sendmeal.model.Plato;
 import isi.dam.sendmeal.repositories.PedidoRepository;
-import isi.dam.sendmeal.repositories.PlatoRepository;
 
 public class PedidoActivity extends AppCompatActivity implements PedidoRepository.OnResultCallback {
 
     private static final int LISTA_PLATOS_REQUEST_CODE = 0;
+    private static final int CODIGO_MAPA = 9;
     static public List<Plato> listaPlatosPedido = new ArrayList<Plato>();
     private RecyclerView recyclerView;
     private EditText textEmail;
@@ -42,10 +57,12 @@ public class PedidoActivity extends AppCompatActivity implements PedidoRepositor
     private TextView textPrecioPedido;
     private View linea;
     private Pedido pedido;
-
     // TODO: Revisar qué clase deberia tener el BroadcastReceiver
     private CustomReceiver broadcastReceiver;
     PedidoRepository repository;
+    ImageView imageView;
+    LatLng localizacion = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +129,13 @@ public class PedidoActivity extends AppCompatActivity implements PedidoRepositor
                 this.actualizarDetallePedido();
             }
         }
+
+        if(requestCode == CODIGO_MAPA) {
+            if (resultCode == RESULT_OK) {
+                localizacion = data.getExtras().getParcelable("Coordenadas");
+                Log.d("Localizacion", localizacion.toString());
+            }
+        }
     }
 
     public void onClickAgregarPlatos(View view) {
@@ -135,7 +159,7 @@ public class PedidoActivity extends AppCompatActivity implements PedidoRepositor
         pedido.setNroCalle(Integer.parseInt(textNroCallePedido.getText().toString()));
         pedido.setPlatos((ArrayList<Plato>) listaPlatosPedido);
         pedido.setTotal(Float.parseFloat(this.calcularPrecioTotal().toString()));
-
+        pedido.setLocalizacion(localizacion);
         repository.insertar(pedido);
     }
 
@@ -180,6 +204,7 @@ public class PedidoActivity extends AppCompatActivity implements PedidoRepositor
         }
     }
 
+
     @Override
     public void onResult(List result) {
 
@@ -188,5 +213,11 @@ public class PedidoActivity extends AppCompatActivity implements PedidoRepositor
     @Override
     public void onInsert() {
 
+    }
+
+    public void onClickLocationButton(View view) {
+        Log.d("LOCATION","reached");
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivityForResult(intent, CODIGO_MAPA);
     }
 }

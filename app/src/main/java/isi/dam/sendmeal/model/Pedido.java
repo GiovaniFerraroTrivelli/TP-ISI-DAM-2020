@@ -3,6 +3,9 @@ package isi.dam.sendmeal.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 
 @Entity
@@ -16,6 +19,16 @@ public class Pedido {
     public String email;
     public Float total;
     public Integer cantidad;
+    @Expose
+    private LatLng localizacion;
+
+    public LatLng getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(LatLng localizacion) {
+        this.localizacion = localizacion;
+    }
 
     public Long getId() {
         return id;

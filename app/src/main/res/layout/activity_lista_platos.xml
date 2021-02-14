@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#fafafa"
     android:orientation="vertical"
-    tools:context=".ListaPlatosActivity">
+    tools:context=".activities.ListaPlatosActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/nuevo_pedido_toolbar"

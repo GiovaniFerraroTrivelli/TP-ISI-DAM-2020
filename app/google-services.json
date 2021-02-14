@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "288797722241",
+    "project_id": "lab-05-304614",
+    "storage_bucket": "lab-05-304614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288797722241:android:b05665c434a3cc28c0af80",
+        "android_client_info": {
+          "package_name": "isi.dam.sendmeal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "288797722241-247unomj59kjmquhd15vs4els6mlu7qi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs1dVmnKNBY-Doo3OQFZyqf48jPod3MPI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "288797722241-247unomj59kjmquhd15vs4els6mlu7qi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

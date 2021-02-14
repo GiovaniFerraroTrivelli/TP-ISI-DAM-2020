@@ -2,12 +2,13 @@ package isi.dam.sendmeal;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
 import androidx.core.app.NotificationCompat;
+
+import isi.dam.sendmeal.activities.PedidoActivity;
 
 public class CustomReceiver extends BroadcastReceiver {
     public static final String NOTIFICATION_CHANNEL_ID = "10001";

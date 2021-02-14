@@ -1,4 +1,4 @@
-package isi.dam.sendmeal;
+package isi.dam.sendmeal.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import isi.dam.sendmeal.R;
 import isi.dam.sendmeal.model.Plato;
 
 public class PlatoPedidoAdapter extends RecyclerView.Adapter<PlatoPedidoAdapter.PlatoPedidoViewHolder> {
@@ -58,4 +59,5 @@ public class PlatoPedidoAdapter extends RecyclerView.Adapter<PlatoPedidoAdapter.
             textPrecioPlato = itemView.findViewById(R.id.precio_plato_pedido);
         }
     }
+
 }

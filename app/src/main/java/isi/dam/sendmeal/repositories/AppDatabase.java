@@ -16,7 +16,7 @@ import isi.dam.sendmeal.dataAccess.PlatoDao;
 import isi.dam.sendmeal.model.Pedido;
 import isi.dam.sendmeal.model.Plato;
 
-@Database(entities = {Plato.class, Pedido.class}, version = 1)
+@Database(entities = {Plato.class, Pedido.class}, version = 3, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE = null;
@@ -30,6 +30,7 @@ public abstract class AppDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     AppDatabase.class, "app-database")
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return INSTANCE;

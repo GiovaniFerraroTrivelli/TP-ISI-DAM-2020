@@ -1,18 +1,34 @@
-package isi.dam.sendmeal;
+package isi.dam.sendmeal.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
+import isi.dam.sendmeal.adapters.PlatoAdapter;
+import isi.dam.sendmeal.adapters.PlatoAdapterFromAltaPedido;
+import isi.dam.sendmeal.R;
+import isi.dam.sendmeal.dataAccess.PlatoDao;
+import isi.dam.sendmeal.model.Plato;
 import isi.dam.sendmeal.repositories.PlatoRepository;
 
 public class ListaPlatosActivity extends AppCompatActivity implements PlatoRepository.OnResultCallback {
@@ -23,6 +39,7 @@ public class ListaPlatosActivity extends AppCompatActivity implements PlatoRepos
     private RecyclerView.LayoutManager layoutManager;
     private PlatoRepository repository;
     private Boolean hasPlatos;
+    private ImageView imagenPlato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +57,7 @@ public class ListaPlatosActivity extends AppCompatActivity implements PlatoRepos
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        repository = new PlatoRepository(this.getApplication(), this);
+        repository  = new PlatoRepository(this.getApplication(), this);
         repository.buscarTodos();
     }
 
@@ -73,6 +89,7 @@ public class ListaPlatosActivity extends AppCompatActivity implements PlatoRepos
         return super.onCreateOptionsMenu(menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -91,4 +108,5 @@ public class ListaPlatosActivity extends AppCompatActivity implements PlatoRepos
         }
 
     }
+
 }
