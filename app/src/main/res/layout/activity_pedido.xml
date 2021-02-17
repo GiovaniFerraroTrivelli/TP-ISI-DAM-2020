@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PedidoActivity"
+    android:paddingHorizontal="10dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/Email_pedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_pedido"/>
+
+    <TextView
+        android:id="@+id/Text_direccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="3dp"
+        android:layout_below="@id/Email_pedido"
+        android:textStyle="bold"
+        android:text="@string/TextView_Direccion_Pedido">
+    </TextView>
+
+    <EditText
+        android:id="@+id/Calle_pedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Text_direccion"
+        android:hint="@string/calle_pedido"/>
+
+    <EditText
+        android:id="@+id/Numero_calle_pedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Calle_pedido"
+        android:inputType="number"
+        android:hint="@string/numero_calle_pedido"/>
+
+    <Spinner
+        android:id="@+id/Spinner_ciudades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Numero_calle_pedido"
+        android:entries="@array/spinner_ciudades"/>
+
+    <TextView
+        android:id="@+id/Text_tipo_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="3dp"
+        android:textStyle="bold"
+        android:layout_below="@id/Spinner_ciudades"
+        android:text="@string/tipo_pedido"/>
+
+    <Spinner
+        android:id="@+id/Spinner_tipo_pedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Text_tipo_pedido"
+        android:entries="@array/spinner_tipo_pedido"/>
+
+    <TextView
+        android:id="@+id/Fila_detalle_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingStart="3dp"
+        android:textStyle="bold"
+        android:text="@string/detalle_pedido"
+        android:layout_below="@+id/Spinner_tipo_pedido"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_platos_pedido"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/Fila_detalle_pedido"
+        android:paddingHorizontal="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/Space"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/recycler_view_platos_pedido"
+        android:visibility="gone"
+        android:background="@android:color/darker_gray"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/Total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:paddingLeft="3dp"
+        android:text="TOTAL: "
+        android:layout_below="@+id/Space"/>
+
+    <TextView
+        android:id="@+id/Cantidad_platos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/Total"
+        android:visibility="gone"
+        android:layout_below="@+id/Space"/>
+
+    <TextView
+        android:id="@+id/Precio_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentEnd="true"
+        android:textStyle="bold"
+        android:paddingRight="10dp"
+        android:layout_below="@+id/Space"/>
+
+    <Button
+        android:id="@+id/Agregar_platos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Cantidad_platos"
+        android:layout_centerInParent="true"
+        android:onClick="onClickAgregarPlatos"
+        android:text="@string/agregar_platos" />
+
+
+    <Button
+        android:id="@+id/map_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Agregar_platos"
+        android:layout_centerInParent="true"
+        android:onClick="onClickLocationButton"
+        android:text="@string/map_button" />
+
+    <Button
+        android:id="@+id/Finalizar_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/map_button"
+        android:layout_centerInParent="true"
+        android:onClick="onClickFinalizarPedido"
+        android:text="@string/finalizar_pedido" />
+
+
+
+</RelativeLayout>

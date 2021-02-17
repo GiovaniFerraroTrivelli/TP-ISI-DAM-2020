@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.AltaPlatoActivity">
+
+    <EditText
+        android:id="@+id/TituloPlato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/titulo_plato"/>
+
+    <EditText
+        android:id="@+id/DescripcionPlato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TituloPlato"
+        android:hint="@string/descripcion_plato"/>
+
+    <EditText
+        android:id="@+id/PrecioPlato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:layout_below="@id/DescripcionPlato"
+        android:layout_alignParentStart="true"
+        android:hint="@string/precio_plato"/>
+
+    <EditText
+        android:id="@+id/CaloriasPlato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/DescripcionPlato"
+        android:hint="@string/calorias_plato"
+        android:layout_toEndOf="@+id/PrecioPlato"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/subir_foto_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PrecioPlato"
+        android:layout_centerInParent="true"
+        android:text="@string/subir_foto"
+        android:onClick="onClickUploadPhoto"
+        />
+
+    <Button
+        android:id="@+id/tomar_foto_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subir_foto_button"
+        android:layout_centerInParent="true"
+        android:text="@string/tomar_foto"
+        android:onClick="onClickTakePhoto"/>
+
+    <Button
+        android:id="@+id/guardar_plato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tomar_foto_button"
+        android:layout_centerInParent="true"
+        android:text="@string/guardar_plato" />
+
+
+</RelativeLayout>

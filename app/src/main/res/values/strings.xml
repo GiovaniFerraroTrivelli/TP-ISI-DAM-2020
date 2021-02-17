@@ -1,3 +1,91 @@
 <resources>
+    <string name="google_maps_key">AIzaSyBkBeMB_l6FhNW8245ZpkIz1XP9wu4gS5I</string>
     <string name="app_name">Send Meal</string>
+    <string name="nombre">Nombre</string>
+    <string name="password">Contraseña</string>
+    <string name="repeat_password">Repetir Contraseña</string>
+    <string name="alerta_password">Las contraseñas deben coincidir</string>
+    <string name="email">Email</string>
+    <string name="debito">Débito</string>
+    <string name="credito">Crédito</string>
+    <string name="tipo">Tipo de tarjeta:</string>
+    <string name="numero_tarjeta">Numero de tarjeta</string>
+    <string name="ccv">CCV</string>
+    <string name="vencimiento">Fecha de Vencimiento</string>
+    <string name="mes_vencimiento">Mes</string>
+    <string name="año_vencimiento">Año</string>
+    <string name="cbu">CBU</string>
+    <string name="cbu_alias">Alias CBU</string>
+    <string name="realizar_carga_inicial">¿Realizar carga inicial?</string>
+    <string name="credito_inicial">Crédito inicial</string>
+    <string name="terminos_condiciones">Acepto los términos y condiciones</string>
+    <string name="registrar">Registrar</string>
+    <string name="agregar">Crear Ítem</string>
+    <string name="lista">Lista de Items</string>
+    <string name="titulo_alta_plato">Nuevo Plato</string>
+    <string name="titulo_registrar_usario">Registrar Usuario</string>
+    <string name="titulo_plato">Título</string>
+    <string name="precio_plato">Precio</string>
+    <string name="calorias_plato">Calorías</string>
+    <string name="descripcion_plato">Descripción</string>
+    <string name="guardar_plato">Guardar</string>
+    <string name="titulo_lista_platos">Platos Disponibles</string>
+    <string name="email_pedido">Correo Electrónico</string>
+    <string name="nuevo_pedido">Nuevo Pedido</string>
+    <string name="calle_pedido">Calle</string>
+    <string name="numero_calle_pedido">Número</string>
+    <string name="TextView_Direccion_Pedido">Dirección</string>
+    <string name="tipo_pedido">Tipo de Pedido</string>
+    <string name="pedido_envio">Envío</string>
+    <string name="pedido_takeaway">TakeAway</string>
+    <string name="agregar_platos">Agregar platos</string>
+    <string name="finalizar_pedido">Finalizar Pedido</string>
+    <string name="agregar_plato_a_pedido">Agregar Plato</string>
+    <string name="titulo_alta_pedido">Nuevo Pedido</string>
+    <string name="detalle_pedido">Detalle del pedido</string>
+    <string name="welcome">¡Hola! :)</string>
+    <string name="direccion_button">Confirmar</string>
+    <string name="tomar_foto">Tomar foto</string>
+    <string name="subir_foto">Subir foto</string>
+
+    <string-array name="spinner_meses">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="spinner_anios">
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+    </string-array>
+
+    <string-array name="spinner_ciudades">
+        <item>Santa Fe</item>
+    </string-array>
+
+    <string-array name="spinner_tipo_pedido">
+        <item>Envío a Domicilio</item>
+        <item>TakeAway</item>
+    </string-array>
+
+    <string name="map_button">Seleccionar dirección</string>
+
 </resources>
