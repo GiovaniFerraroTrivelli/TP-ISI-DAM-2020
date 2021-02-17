@@ -1,4 +1,4 @@
-package isi.dam.sendmeal;
+package isi.dam.sendmeal.activities;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import isi.dam.sendmeal.InputValidator;
+import isi.dam.sendmeal.R;
 
 public class RegistrarActivity extends AppCompatActivity implements View.OnClickListener {
 

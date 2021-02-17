@@ -1,7 +1,10 @@
-package isi.dam.sendmeal;
+package isi.dam.sendmeal.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +17,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.text.DecimalFormat;
 import java.util.List;
 
+import isi.dam.sendmeal.R;
+import isi.dam.sendmeal.activities.PedidoActivity;
 import isi.dam.sendmeal.model.Plato;
 
 public class PlatoAdapterFromAltaPedido extends RecyclerView.Adapter<PlatoAdapterFromAltaPedido.PlatoFromPedidoViewHolder> {
@@ -39,7 +49,7 @@ public class PlatoAdapterFromAltaPedido extends RecyclerView.Adapter<PlatoAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlatoFromPedidoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PlatoFromPedidoViewHolder holder, int position) {
         Plato plato = listaPlatos.get(position);
 
         holder.textTituloPlato.setText(plato.getTitulo());
@@ -48,13 +58,42 @@ public class PlatoAdapterFromAltaPedido extends RecyclerView.Adapter<PlatoAdapte
         DecimalFormat df = new DecimalFormat("#.00");
 
         holder.textPrecioPlato.setText("$" + df.format(plato.getPrecio()));
-        holder.imagenPlato.setImageResource(R.drawable.sopa_maruchan);
         holder.hiddenIdPlato.setText(plato.getId().toString());
         holder.textTituloPlato.setTag(position);
         holder.textDescripcionPlato.setTag(position);
         holder.textPrecioPlato.setTag(position);
         holder.imagenPlato.setTag(position);
         holder.botonAgregarPlato.setTag(position);
+        holder.imagenPlato.setImageResource(R.drawable.food_placeholder);
+
+        try{
+            StorageReference gsReference = FirebaseStorage.getInstance().getReference("images/"+plato.getTitulo()+".jpg");
+
+            final long THREE_MEGABYTE = 3 * 1024 * 1024;
+            gsReference.getBytes(THREE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    // Exito
+                    Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    DisplayMetrics dm = new DisplayMetrics();
+                    ((Activity) activity).getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+                    holder.imagenPlato.setMinimumHeight(dm.heightPixels);
+                    holder.imagenPlato.setMinimumWidth(dm.widthPixels);
+                    holder.imagenPlato.setImageBitmap(bm);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    holder.imagenPlato = activity.findViewById(R.id.imagen_plato);
+                    holder.imagenPlato.setImageResource(R.drawable.food_placeholder);
+                }
+            });
+        } catch (Exception e){
+            holder.imagenPlato = activity.findViewById(R.id.imagen_plato);
+            holder.imagenPlato.setImageResource(R.drawable.food_placeholder);
+        }
+
 
     }
 

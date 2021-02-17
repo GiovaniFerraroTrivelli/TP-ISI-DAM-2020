@@ -11,6 +11,7 @@ public class Plato {
     public String descripcion;
     public Double precio;
     public Integer calorias;
+    public String foto;
 
     public Plato() {
     }
@@ -63,5 +64,13 @@ public class Plato {
                 ", precio=" + precio +
                 ", calorias=" + calorias +
                 '}';
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getFoto(){
+        return foto;
     }
 }

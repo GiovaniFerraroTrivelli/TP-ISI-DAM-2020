@@ -1,4 +1,5 @@
 <resources>
+    <string name="google_maps_key">AIzaSyBkBeMB_l6FhNW8245ZpkIz1XP9wu4gS5I</string>
     <string name="app_name">Send Meal</string>
     <string name="nombre">Nombre</string>
     <string name="password">Contraseña</string>
@@ -43,6 +44,9 @@
     <string name="titulo_alta_pedido">Nuevo Pedido</string>
     <string name="detalle_pedido">Detalle del pedido</string>
     <string name="welcome">¡Hola! :)</string>
+    <string name="direccion_button">Confirmar</string>
+    <string name="tomar_foto">Tomar foto</string>
+    <string name="subir_foto">Subir foto</string>
 
     <string-array name="spinner_meses">
         <item>01</item>
@@ -81,4 +85,7 @@
         <item>Envío a Domicilio</item>
         <item>TakeAway</item>
     </string-array>
+
+    <string name="map_button">Seleccionar dirección</string>
+
 </resources>

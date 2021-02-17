@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PedidoActivity"
+    tools:context=".activities.PedidoActivity"
     android:paddingHorizontal="10dp"
     android:orientation="vertical">
 
@@ -127,13 +127,25 @@
         android:onClick="onClickAgregarPlatos"
         android:text="@string/agregar_platos" />
 
+
     <Button
-        android:id="@+id/Finalizar_pedido"
+        android:id="@+id/map_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Agregar_platos"
         android:layout_centerInParent="true"
+        android:onClick="onClickLocationButton"
+        android:text="@string/map_button" />
+
+    <Button
+        android:id="@+id/Finalizar_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/map_button"
+        android:layout_centerInParent="true"
         android:onClick="onClickFinalizarPedido"
         android:text="@string/finalizar_pedido" />
+
+
 
 </RelativeLayout>
