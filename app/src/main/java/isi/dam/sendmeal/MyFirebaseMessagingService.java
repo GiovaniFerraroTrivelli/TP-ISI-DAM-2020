@@ -1,5 +1,6 @@
 package isi.dam.sendmeal;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -28,10 +29,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d("TAG", "Cuerpo de la notificación del mensaje: " + remoteMessage.getNotification().getBody());
         }
-        sendNotification("Cuerpo de la notificacion");
+        sendNotification(remoteMessage.getNotification().getBody(), remoteMessage.getNotification().getTitle());
     }
 
-    private void sendNotification(String messageBody) {
+    private void sendNotification(String messageBody, String title) {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -44,7 +45,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this, PEDIDO_CHANNEL);
+                new NotificationCompat.Builder(this, PEDIDO_CHANNEL)
+                        .setAutoCancel(true)
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setWhen(System.currentTimeMillis())
+                        .setContentTitle(title)
+                        .setContentText(messageBody);
 
         notificationManager.notify(0, notificationBuilder.build());
     }
